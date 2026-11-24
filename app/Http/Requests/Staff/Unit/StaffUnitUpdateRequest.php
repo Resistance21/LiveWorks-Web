@@ -13,7 +13,7 @@ class StaffUnitUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()?->can('unit-add') ?? false;
+        return true;
     }
 
     /**
@@ -24,8 +24,8 @@ class StaffUnitUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'unit_name' => ['required','string','max:255'],
-            'unit_code' => ['required','string','max:255', Rule::unique('units', 'Unit_code')->ignore($this->unit->id)],
+            'unit_name' => ['required', 'string', 'max:255'],
+            'unit_code' => ['required', 'string', 'max:255', Rule::unique('units', 'Unit_code')->ignore($this->unit->id)],
         ];
     }
 }

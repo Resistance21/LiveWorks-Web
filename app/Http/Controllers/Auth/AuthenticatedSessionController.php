@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         if ($request->routeIs('ui.sign-in.submit') && ! $request->session()->has('url.intended')) {
-            $destination = $user->hasRole('staff')
+            $destination = $user->role === 'staff'
                 ? 'ui.staff.dashboard'
                 : 'ui.student.dashboard';
 
