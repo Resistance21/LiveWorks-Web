@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
                 'email' => 'supervisor@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
-                'roles' => ['admin'],
-                'permissions' => [],
+                'role' => 'admin',
+
             ],
 
             [
@@ -29,8 +29,8 @@ class UserSeeder extends Seeder
                 'email' => 'admin@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
-                'roles' => ['admin'],
-                'permissions' => [],
+                'role' => 'admin',
+
             ],
 
             [
@@ -39,8 +39,8 @@ class UserSeeder extends Seeder
                 'email' => 'staff@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
-                'roles' => ['staff'],
-                'permissions' => [],
+                'role' => 'staff',
+
             ],
 
             [
@@ -49,8 +49,8 @@ class UserSeeder extends Seeder
                 'email' => 'client@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
-                'roles' => ['client'],
-                'permissions' => [],
+                'role' => 'client',
+
             ],
 
             [
@@ -59,8 +59,8 @@ class UserSeeder extends Seeder
                 'email' => 'client2@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => null,
-                'roles' => ['client'],
-                'permissions' => [],
+                'role' => 'client',
+
             ],
 
             [
@@ -69,8 +69,8 @@ class UserSeeder extends Seeder
                 'email' => 'client3@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => null,
-                'roles' => ['client'],
-                'permissions' => [],
+                'role' => 'client',
+
             ],
             [
                 'id' => 303,
@@ -79,32 +79,16 @@ class UserSeeder extends Seeder
                 'password' => 'Password1',
                 'email_verified_at' => null,
                 'suspended_at' => now(),
-                'roles' => ['client'],
-                'permissions' => [],
+                'role' => 'client',
+
             ],
         ];
 
         foreach ($seedUsers as $newUser) {
-
-            // grab the roles & additional permissions from the seed users
-            $roles = $newUser['roles'];
-            unset($newUser['roles']);
-
-            $permissions = $newUser['permissions'];
-            unset($newUser['permissions']);
-
-            $user = User::updateOrCreate(
+            User::updateOrCreate(
                 ['id' => $newUser['id']],
                 $newUser
             );
-
-            $user->permissions()->sync($permissions);
-            $user->syncRoles($roles);
-
-            // Uncomment this line when using Spatie Permissions
-            // $user->assignRole($roles);
-            // $user->assignPermissions($permissions);
-
         }
 
         // Uncomment the line below to create (10) randomly named users using the User Factory.

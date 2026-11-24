@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,19 +18,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $this->call(
-            [
-                // When using Spatie Permissions, perform the Role / Permission seeding FIRST
-                RolePermissionSeeder::class,
+        DB::transaction(function () {
+            $this->call([
                 UserSeeder::class,
                 UnitSeeder::class,
                 AssessmentSeeder::class,
                 ProjectSeeder::class,
                 ProjectDocumentSeeder::class,
-                ProjectArchiveSeeder::class,    
-                // Add further seeder classes here
-            ]
-        );
+                ProjectArchiveSeeder::class,
+            ]);
+        });
 
     }
 }
