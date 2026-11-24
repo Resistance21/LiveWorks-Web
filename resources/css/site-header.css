@@ -1,0 +1,66 @@
+.site-header {
+    padding: 1.25rem 8rem;
+    border-bottom: 4px solid var(--red);
+    background: var(--white);
+
+    > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 90rem;
+        margin: 0 auto;
+
+        > a {
+            display: inline-flex;
+            flex-direction: column;
+            text-decoration: none;
+
+            span {
+                color: var(--red);
+                font-weight: 700;
+            }
+
+            strong {
+                color: var(--dark-grey);
+                font-size: 2rem;
+                line-height: 1.05;
+            }
+        }
+    }
+
+    nav {
+        display: flex;
+        gap: 2rem;
+
+        a {
+            font-weight: 700;
+            text-decoration: none;
+
+            &:hover {
+                color: var(--red);
+                text-decoration: underline;
+                text-underline-offset: 0.2em;
+            }
+        }
+    }
+
+    &.sidebar-header {
+        padding: 0.25rem 1rem 0.45rem;
+        border: 0;
+        background: transparent;
+
+        > div {
+            display: block;
+
+            > a {
+                strong {
+                    font-size: 1.7rem;
+                }
+
+                span {
+                    font-size: 0.95rem;
+                }
+            }
+        }
+    }
+}
